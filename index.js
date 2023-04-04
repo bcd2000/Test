@@ -129,27 +129,31 @@ const parents = [
 
 const genarateDomTree = (parents) => {
     const divEl = document.createElement("div");
-    let count = 0
     for (let i = 0; i < parents.length; i++) {
       const {childs} = parents[i];
+
+      // nếu cho child thì tiếp tục tạo DOM
       if(childs) {
-          count++;
           genarateDomTree(childs);
       }
-      genarateDom(divEl, parents[i].name)
+
+      // tạo dom
+      genarateDom(divEl, parents[i].name);
     }
 }
 
+
+// tạo DOM và hiện thị tên node
 const genarateDom = (divEl, name) => {
   const divChild = document.createElement("div");
   const pEl = document.createElement("p");
   const spanEl = document.createElement("span");
   spanEl.innerText = name;
   pEl.appendChild(spanEl);
-  divChild.appendChild(pEl)
+  divChild.appendChild(pEl);
   divEl.appendChild(divChild);
   document.body.appendChild(divEl);
 }
 
-genarateDomTree(parents)
+genarateDomTree(parents);
 
